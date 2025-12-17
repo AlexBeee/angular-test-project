@@ -32,7 +32,7 @@ jobs:
 
       # 4️⃣ Projekt bauen
       - name: Build
-        run: npm run build -- --watch=false
+        run: npm run build -- --configuration production --base-href /angular-test-project/
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
