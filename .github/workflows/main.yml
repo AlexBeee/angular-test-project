@@ -1,0 +1,51 @@
+name: Angular CI
+
+on:
+  push:
+    branches:
+      - main
+      - feature/**
+  pull_request:
+    branches:
+      - main
+      - feature/**
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Repository auschecken
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2️⃣ Node.js installieren
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      # 3️⃣ Dependencies installieren
+      - name: Install dependencies
+        run: npm install
+
+      # 4️⃣ Projekt bauen
+      - name: Build
+        run: npm run build -- --configuration production --base-href /angular-test-project/
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GH_PAT }}
+          publish_dir: ./dist/angular-test-app
+
+      # 5️⃣ Tests ausführen
+      - name: Run tests
+        run: npm test -- --watch=false
+        
+      - name: Upload coverage
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage
