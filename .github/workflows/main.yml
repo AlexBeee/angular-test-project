@@ -30,15 +30,15 @@ jobs:
         run: npm ci
 
       # 4️⃣ Projekt bauen
-      - name: Build
-        run: npm run build -- --configuration production --base-href /angular-test-project/
+      - name: Build Angular
+        run: npx ng build --configuration production --base-href /angular-test-project/ --output-path=browser
 
-      - name: Deploy to GitHub Pages
-        if: github.ref == 'refs/heads/main'
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GH_PAT }}
-          publish_dir: ./dist/angular-test-app
+      #- name: Deploy to GitHub Pages
+      #  if: github.ref == 'refs/heads/main'
+      #  uses: peaceiris/actions-gh-pages@v4
+      #  with:
+      #    github_token: ${{ secrets.GH_PAT }}
+      #    publish_dir: ./browser
 
       # 5️⃣ Tests ausführen
       - name: Run tests with coverage
