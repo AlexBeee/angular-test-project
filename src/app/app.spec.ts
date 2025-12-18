@@ -1,5 +1,5 @@
-import { expect, test } from 'vitest';
-
-test('simple example', () => {
-    expect(1 + 1).toBe(2);
+describe('Dummy test', () => {
+    it('placeholder', () => {
+        expect(true).toBeTruthy();
+    });
 });
