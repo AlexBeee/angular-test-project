@@ -27,7 +27,7 @@ jobs:
 
       # 3️⃣ Dependencies installieren
       - name: Install dependencies
-        run: npm ci
+        run: npm ci --legacy-peer-deps
 
       # 4️⃣ Projekt bauen
       - name: Build Angular
