@@ -42,7 +42,7 @@ jobs:
 
       # 5️⃣ Tests ausführen
       - name: Run tests with coverage
-        run: npm test --coverage
+        run: npm test -- --coverage --runInBand --all
 
       - name: Upload coverage
         uses: actions/upload-artifact@v4
